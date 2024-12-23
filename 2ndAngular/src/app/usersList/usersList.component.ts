@@ -6,7 +6,7 @@ import { Component } from "@angular/core";
     standalone: false
 })
 export class UsersListComponent {
-    // testUsers = ["Dave", "John", "Jake", "Dirk"];
+    newUserName: string = "";
     users = [
         {
             id: '1',
@@ -28,5 +28,29 @@ export class UsersListComponent {
             name: "Jade",
             age: 19
         }
-    ]
+    ];
+
+    removeUser(id: string): void {
+        this.users = this.users.filter(user => user.id !== id)
+        console.log("remove user", id);
+    }
+
+    setNewUserName(userName: Event): void {
+        const input = userName.target as HTMLInputElement;
+        const value = input?.value || "";
+        this.newUserName = value;
+    }
+
+    addUser(): void {
+        if (this.newUserName !== ""){
+            const uniqueId = Math.random().toString(16);
+            const newUser = {
+                id: uniqueId,
+                name: this.newUserName,
+                age: 30
+            };
+            this.users.push(newUser);
+            this.newUserName = "";
+        }
+    }
 }
