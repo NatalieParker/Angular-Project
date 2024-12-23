@@ -1,6 +1,10 @@
 <h1>Angular HI</h1>
 
-<app-users-list></app-users-list>
+<app-users-list 
+  [users]="users" 
+  (removeUserEvent)="removeUser($event)"
+  (addUserEvent)="addUser($event)"
+></app-users-list>
 
 <!-- 
 

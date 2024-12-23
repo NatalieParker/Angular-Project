@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 @Component({
     selector: 'app-users-list',
@@ -7,34 +7,10 @@ import { Component } from "@angular/core";
     standalone: false
 })
 export class UsersListComponent {
+    @Input() users: {id: string; name: string; age: number}[] = [];
+    @Output() removeUserEvent = new EventEmitter();
+    @Output() addUserEvent = new EventEmitter();
     newUserName: string = "";
-    users = [
-        {
-            id: '1',
-            name: "John",
-            age: 13
-        },
-        {
-            id: '2',
-            name: "Rose",
-            age: 15
-        },
-        {
-            id: '3',
-            name: "Dave",
-            age: 17
-        },
-        {
-            id: '4',
-            name: "Jade",
-            age: 19
-        }
-    ];
-
-    removeUser(id: string): void {
-        this.users = this.users.filter(user => user.id !== id)
-        console.log("remove user", id);
-    }
 
     setNewUserName(userName: Event): void {
         const input = userName.target as HTMLInputElement;
@@ -44,13 +20,7 @@ export class UsersListComponent {
 
     addUser(): void {
         if (this.newUserName !== ""){
-            const uniqueId = Math.random().toString(16);
-            const newUser = {
-                id: uniqueId,
-                name: this.newUserName,
-                age: 30
-            };
-            this.users.push(newUser);
+            this.addUserEvent.emit(this.newUserName);
             this.newUserName = "";
         }
     }
