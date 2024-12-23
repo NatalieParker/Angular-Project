@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { UserInterface } from './types/user.interface';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -9,28 +10,19 @@ import { UserInterface } from './types/user.interface';
 })
 export class AppComponent {
   title = '2ndAngular';
-  users: UserInterface[] = [
-    {
-        id: '1',
-        name: "John",
-        age: 13
-    },
-    {
-        id: '2',
-        name: "Rose",
-        age: 15
-    },
-    {
-        id: '3',
-        name: "Dave",
-        age: 17
-    },
-    {
-        id: '4',
-        name: "Jade",
-        age: 19
-    }
-  ];
+
+  users: UserInterface[] = [];
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    console.log("ngOnInittt");
+    this.http
+    .get<UserInterface[]>('http://localhost:3000/users')
+    .subscribe((users: UserInterface[]) => {
+      console.log('users', users);
+      this.users = users;
+    })
+  }
 
   removeUser(id: string): void {
     this.users = this.users.filter(user => user.id !== id)
