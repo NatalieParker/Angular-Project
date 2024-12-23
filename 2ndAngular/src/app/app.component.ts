@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserInterface } from './types/user.interface';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +9,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = '2ndAngular';
-  users = [
+  users: UserInterface[] = [
     {
         id: '1',
         name: "John",
