@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsersListModule } from './usersList/usersList.module';
+import { UserService } from './services/users.service';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { UsersListModule } from './usersList/usersList.module';
     UsersListModule
 ],
   providers: [
-    provideClientHydration(withEventReplay())
+    provideClientHydration(withEventReplay()),
+    UserService
   ],
   bootstrap: [AppComponent]
 })
