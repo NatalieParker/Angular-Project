@@ -17,8 +17,8 @@ export class AppComponent {
   ngOnInit(): void {
     this.userService.getUsers()
     .subscribe((users: UserInterface[]) => {
-      console.log('users', users);
       this.users = users;
+      // console.log("users", users);
     })
   }
 

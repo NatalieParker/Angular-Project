@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { UserInterface } from "../types/user.interface";
 
 @Injectable()
@@ -9,7 +9,15 @@ export class UserService {
 
     getUsers(): Observable<UserInterface[]> {
         return this.http
-            .get<UserInterface[]>('http://localhost:3000/users');
+            .get<UserInterface[]>('http://localhost:3000/users').pipe(
+                map((users: UserInterface[]) => {
+                    return users.map(user => ({
+                        id: user.id,
+                        name: user.name,
+                        age: user.age
+                    }))
+                }),
+            );
     }
 
     removeUser(id: string): Observable<{}> {
