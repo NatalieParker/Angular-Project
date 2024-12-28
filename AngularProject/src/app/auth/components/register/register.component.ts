@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { isSubmittingSelector } from "../../store/selectors";
 
 import { registerAction } from "../../store/actions";
+import { AppStateInterface } from "../../types/appState.interface";
 
 @Component({
     selector: "mc-register",
@@ -14,9 +15,12 @@ import { registerAction } from "../../store/actions";
 })
 export class RegisterComponent implements OnInit {
     form: FormGroup = new FormGroup({});
-    // isSubmitting$!: Observable<boolean>;
+    isSubmitting$!: Observable<boolean>;
 
-    constructor(private fb: FormBuilder, private store: Store) {}
+    constructor(
+        private fb: FormBuilder,
+        private store: Store<AppStateInterface>
+    ) {}
 
     ngOnInit(): void {
         this.initializeForm();
@@ -33,7 +37,13 @@ export class RegisterComponent implements OnInit {
     }
 
     initializeValues(): void {
-        // this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+        this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+        this.isSubmitting$.subscribe((data) =>
+            console.log("IS SUBMITTING: ", data)
+        );
+        // this.store
+        //     .select(isSubmittingSelector)
+        //     .subscribe((data) => console.log("DATA: ", data));
     }
 
     onSubmit(): void {
