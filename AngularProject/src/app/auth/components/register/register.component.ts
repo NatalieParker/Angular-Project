@@ -4,7 +4,7 @@ import { select, Store } from "@ngrx/store";
 import { Observable } from "rxjs";
 import { isSubmittingSelector } from "../../store/selectors";
 
-import { registerAction } from "../../store/actions";
+import { registerAction } from "../../store/actions/register.action";
 import { AppStateInterface } from "../../types/appState.interface";
 
 @Component({
