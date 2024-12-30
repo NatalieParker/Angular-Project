@@ -60,28 +60,27 @@ export class AppComponent implements OnInit {
     // this.user$.subscribe((user) => {
     //   console.log('user', user);
     // });
-
-    this.userService.getUsers().subscribe((users: UserInterface[]) => {
-      this.users = users;
-      console.log('users', users);
-    });
+    // this.userService.getUsers().subscribe((users: UserInterface[]) => {
+    //   this.users = users;
+    //   console.log('users', users);
+    // });
   }
 
-  removeUser(id: string): void {
-    this.userService.removeUser(id).subscribe(() => {
-      this.users = this.users.filter((user) => user.id !== id);
-    });
-  }
+  //   removeUser(id: string): void {
+  //     this.userService.removeUser(id).subscribe(() => {
+  //       this.users = this.users.filter((user) => user.id !== id);
+  //     });
+  //   }
 
-  addUser(name: string): void {
-    this.userService.addUser(name).subscribe((newUser) => {
-      this.users.push(newUser);
-    });
-    // const uniqueId = Math.random().toString(16);
-    // const newUser = {
-    //     id: uniqueId,
-    //     name,
-    //     age: 30
-    // };
-  }
+  //   addUser(name: string): void {
+  //     this.userService.addUser(name).subscribe((newUser) => {
+  //       this.users.push(newUser);
+  //     });
+  //     // const uniqueId = Math.random().toString(16);
+  //     // const newUser = {
+  //     //     id: uniqueId,
+  //     //     name,
+  //     //     age: 30
+  //     // };
+  //   }
 }

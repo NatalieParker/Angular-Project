@@ -13,6 +13,8 @@ import { UserService } from './services/users.service';
 import { LoginModule } from './login/login.module';
 import { RegisterModule } from './register/register.module';
 import { StoreModule } from '@ngrx/store';
+import { PostsModule } from './posts/posts.module';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,8 +24,14 @@ import { StoreModule } from '@ngrx/store';
     HttpClientModule,
     UsersListModule,
     LoginModule,
+    // PostsModule,
     RegisterModule,
     StoreModule.forRoot({}, {}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+      autoPause: true,
+    }),
   ],
   providers: [provideClientHydration(withEventReplay()), UserService],
   bootstrap: [AppComponent],
