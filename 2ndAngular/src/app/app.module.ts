@@ -15,6 +15,7 @@ import { RegisterModule } from './register/register.module';
 import { StoreModule } from '@ngrx/store';
 import { PostsModule } from './posts/posts.module';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,9 +25,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     HttpClientModule,
     UsersListModule,
     LoginModule,
-    // PostsModule,
+    PostsModule,
     RegisterModule,
     StoreModule.forRoot({}, {}),
+    EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: false,
