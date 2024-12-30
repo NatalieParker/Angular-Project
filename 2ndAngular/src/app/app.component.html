@@ -9,7 +9,21 @@
 <a routerLink="/login">Login</a>
 <a routerLink="/register">Register</a>
 
-<router-outlet></router-outlet>
+<div *ngIf="data$ | async as data">
+  <div *ngFor="let user of data.users">
+    {{user.name}}
+  </div>
+  ---
+  <div *ngFor="let username of data.usernames">
+    {{username}}
+  </div>
+  ---
+  <div *ngFor="let user of data.filteredUsers">
+    {{user.name}}
+  </div>
+</div>
+
+<!-- <router-outlet></router-outlet> -->
 
 <!-- 
 
